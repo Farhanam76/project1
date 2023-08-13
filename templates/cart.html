@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Products</h1>
+    <div id="product-list" class="row">
+        <div class="col-md-6">
+            <div class="product">
+                <h2>Product 1</h2>
+                <p>Price: $10</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Product 1', 10)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="product">
+                <h2>Product 2</h2>
+                <p>Price: $15</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Product 2', 15)">Add to Cart</button>
+            </div>
+        </div>
+        <!-- Add more products as needed -->
+    </div>
+
+    <h1>Cart</h1>
+    <div id="cart"></div>
+    <div id="total-price">Total Price: $0</div>
+</div>
+
+<script>
+    // JavaScript code for the shopping cart
+    const cart = [];
+
+    function addToCart(productName, price) {
+        cart.push({ name: productName, price: price });
+        displayCart();
+        displayTotalPrice();
+    }
+
+    function displayCart() {
+        const cartDiv = document.getElementById('cart');
+        cartDiv.innerHTML = '';
+
+        for (const item of cart) {
+            const cartItem = document.createElement('div');
+            cartItem.innerHTML = `<p>${item.name} - Price: $${item.price}</p>`;
+            cartDiv.appendChild(cartItem);
+        }
+    }
+
+    function displayTotalPrice() {
+        const totalPriceDiv = document.getElementById('total-price');
+        let total = 0;
+        for (const item of cart) {
+            total += item.price;
+        }
+        totalPriceDiv.innerHTML = `Total Price: $${total}`;
+    }
+</script>
+{% endblock %}
+

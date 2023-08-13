@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>This is going to hurt</h1>
+    <!-- Sample "Add to Cart" button for a book -->
+    <ul id="bookList">
+        <li>
+            <span>Book: This is Going to Hurt (Price: $19.99)</span>
+            <button class="addToCart" data-book-id="1">Add to Cart</button>
+        </li>
+        <!-- ...other book items... -->
+    </ul>
+
+    <!-- Cart display (a simple modal for this example) -->
+    <div id="cartModal" style="display: none;">
+        <h2>Your Cart</h2>
+        <ul id="cartItems">
+            <!-- Cart items will be added here -->
+        </ul>
+        <p>Total: $<span id="cartTotal">0</span></p>
+        <button id="checkoutButton">Checkout</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.addToCart').forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+
+        function addToCart(event) {
+            const bookId = event.target.getAttribute('data-book-id');
+            // Handle adding the book to the cart (use AJAX or another method)
+            // You may need to pass additional data like the book details.
+            // Example of adding to cart via a function call:
+            // addToCartServer({ id: bookId, name: 'Book Name', author: 'Author Name', price: 19.99 });
+        }
+        
+        // Example function for adding to cart on the server
+        function addToCartServer(bookInfo) {
+            // Implement the logic to add the book to the cart on the server
+            // (Use an appropriate server endpoint, like an API).
+            // This is just a placeholder, you'll need a real server-side implementation.
+        }
+    </script>
+{% endblock %}
